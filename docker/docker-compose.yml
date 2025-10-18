@@ -115,22 +115,22 @@ x-frontend: &frontend
     - app
 
 services:
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "${NGINX_PORT:-80}:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf.template
-      - ./nginx/entrypoint.sh:/entrypoint.sh
-    environment:
-      - MINIO_PRIVATE_BUCKET=${MINIO_PRIVATE_BUCKET:-private}
-      - MINIO_PUBLIC_BUCKET=${MINIO_PUBLIC_BUCKET:-public}
-    command: ["/bin/sh", "/entrypoint.sh"]
-    depends_on:
-      - app
-      - frontend
-      - minio
-    restart: always
+  # nginx:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "${NGINX_PORT:-80}:80"
+  #   volumes:
+  #     - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf.template
+  #     - ./nginx/entrypoint.sh:/entrypoint.sh
+  #   environment:
+  #     - MINIO_PRIVATE_BUCKET=${MINIO_PRIVATE_BUCKET:-private}
+  #     - MINIO_PUBLIC_BUCKET=${MINIO_PUBLIC_BUCKET:-public}
+  #   command: ["/bin/sh", "/entrypoint.sh"]
+  #   depends_on:
+  #     - app
+  #     - frontend
+  #     - minio
+  #   restart: always
 
   app:
     <<: *app
